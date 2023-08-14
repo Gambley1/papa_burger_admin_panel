@@ -18,19 +18,21 @@ class MainNavigationRail extends StatelessWidget {
           onDestinationSelected: cubit.onNavigation,
           destinations: const [
             NavigationRailDestination(
-              icon: Icon(Icons.table_restaurant_outlined),
-              selectedIcon: Icon(Icons.table_restaurant_rounded),
+              icon: Icon(Icons.table_restaurant_rounded),
               label: Text('Restaurants'),
             ),
             NavigationRailDestination(
               icon: Icon(Icons.menu),
-              selectedIcon: Icon(Icons.menu),
               label: Text('Menu'),
             ),
             NavigationRailDestination(
               icon: Icon(Icons.star_border),
               selectedIcon: Icon(Icons.star),
               label: Text('Places'),
+            ),
+            NavigationRailDestination(
+              icon: Icon(Icons.notifications),
+              label: Text('Notifications'),
             ),
           ],
         );

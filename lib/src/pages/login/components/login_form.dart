@@ -76,26 +76,32 @@ class _LoginFormState extends State<LoginForm> {
             final maxWidth = constraints.maxWidth;
             final bigScreen = maxWidth >= 600;
             return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(
-                  width: bigScreen ? width * 0.2 : width * 0.5,
-                  child: CustomFormField(
-                    focusNode: _usernameFocusNode,
-                    onChanged: cubit.onUsernameChanged,
-                    hintText: 'e.g Emil',
-                    labelText: 'Username',
-                    floatingLabelBehaviour: FloatingLabelBehavior.auto,
-                    enabled: !loading,
-                    textInputAction: TextInputAction.next,
-                    contentPadding:
-                        const EdgeInsets.only(bottom: bottomPadding - 6),
-                    errorText: nameError == null
-                        ? null
-                        : (nameError == UsernameValidationError.empty
-                            ? 'Username is required'
-                            : 'Invalid username'),
+                Center(
+                  child: SizedBox(
+                    width: bigScreen ? width * 0.2 : width * 0.5,
+                    child: CustomFormField(
+                      focusNode: _usernameFocusNode,
+                      onChanged: cubit.onUsernameChanged,
+                      hintText: 'e.g Emil',
+                      labelText: 'Username',
+                      floatingLabelBehaviour: FloatingLabelBehavior.auto,
+                      enabled: !loading,
+                      textInputAction: TextInputAction.next,
+                      contentPadding: const EdgeInsets.only(
+                        bottom: bottomPadding - 6,
+                        left: leftPadding,
+                      ),
+                      errorText: nameError == null
+                          ? null
+                          : (nameError == UsernameValidationError.empty
+                              ? 'Username is required'
+                              : 'Invalid username'),
+                    ),
                   ),
                 ),
+                const SizedBox(height: 12),
                 SizedBox(
                   width: bigScreen ? width * 0.2 : width * 0.5,
                   child: CustomFormField(
@@ -106,8 +112,10 @@ class _LoginFormState extends State<LoginForm> {
                     floatingLabelBehaviour: FloatingLabelBehavior.auto,
                     enabled: !loading,
                     textInputAction: TextInputAction.done,
-                    contentPadding:
-                        const EdgeInsets.only(bottom: bottomPadding - 6),
+                    contentPadding: const EdgeInsets.only(
+                      bottom: bottomPadding - 6,
+                      left: leftPadding,
+                    ),
                     errorText: passwordError == null
                         ? null
                         : (passwordError == PasswordValidationError.empty
@@ -149,7 +157,7 @@ class LoginButton extends StatelessWidget {
         icon: Transform.scale(
           scale: 0.5,
           child: const CircularProgressIndicator(
-            color: Colors.black,
+            color: Colors.white,
           ),
         ),
         label: const KText(''),
@@ -162,7 +170,6 @@ class LoginButton extends StatelessWidget {
       ),
       child: const KText(
         'Login',
-        color: Colors.white,
         size: 20,
       ),
     );

@@ -8,14 +8,45 @@ class MainView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CustomScaffold(
+    return CustomScaffold(
       withSafeArea: true,
-      body: Row(
-        children: [
-          MainNavigationRail(),
-          MainActions(),
-        ],
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          final maxWidth = constraints.maxWidth;
+          if (maxWidth <= 560) {
+            return const MobileScreen();
+          }
+          return const WebScreen();
+        },
       ),
+    );
+  }
+}
+
+class WebScreen extends StatelessWidget {
+  const WebScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Row(
+      children: [
+        MainNavigationRail(),
+        MainActions(),
+      ],
+    );
+  }
+}
+
+class MobileScreen extends StatelessWidget {
+  const MobileScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Row(
+      children: [
+        MainNavigationRail(),
+        MainActions(),
+      ],
     );
   }
 }

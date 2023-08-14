@@ -6,7 +6,7 @@ import 'package:papa_burger_admin_panel/src/models/form_fields/username.dart';
 part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
-  LoginCubit() : super(LoginState.initial());
+  LoginCubit() : super(const LoginState.initial());
 
   void onUsernameChanged(String newValue) {
     final previousScreenState = state;
@@ -112,66 +112,6 @@ class LoginCubit extends Cubit<LoginState> {
         );
         emit(newState);
       }
-      // else {
-      // try {
-      //   final apiClient = server.ApiClient();
-      //   final user = await apiClient
-      //       .login(name.value, password.value)
-      //       .timeout(defaultTimeout);
-      //   logger.i('User: ${user?.toMap()}');
-
-      //   if (user != null) {
-      //     final newState = state.copyWith(
-      //       submissionStatus: SubmissionStatus.success,
-      //     );
-
-      //     emit(newState);
-      //   } else {
-      //     final newState = state.copyWith(
-      //       submissionStatus: SubmissionStatus.invalidCredentials,
-      //     );
-
-      //     emit(newState);
-      //   }
-      // } catch (e) {
-      //   logger.e(e);
-
-      //   if (e is server.NetworkApiException) {
-      //     logger.e(e.message);
-      //     final newState = state.copyWith(
-      //       submissionStatus: SubmissionStatus.networkFailed,
-      //     );
-      //     emit(newState);
-      //   }
-
-      //   if (e is server.ApiClientMalformedResponse) {
-      //     logger.e(e.error);
-      //     final newState = state.copyWith(
-      //       submissionStatus: SubmissionStatus.malformedError,
-      //     );
-
-      //     emit(newState);
-      //   }
-
-      //   if (e is server.ApiClientRequestFailure) {
-      //     logger.e(e.body, e.statusCode);
-      //     final newState = state.copyWith(
-      //       submissionStatus: SubmissionStatus.clientRequestFailure,
-      //     );
-
-      //     emit(newState);
-      //   }
-
-      //   if (e is server.InvalidCredentialsApiException) {
-      //     logger.e(e.message);
-      //     final newState = state.copyWith(
-      //       submissionStatus: SubmissionStatus.invalidCredentials,
-      //     );
-
-      //     emit(newState);
-      //   }
-      // }
-      // }
     }
   }
 }

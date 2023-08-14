@@ -42,8 +42,6 @@ class CustomScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    late final scaffoldBackgroundColor = theme.scaffoldBackgroundColor;
     return withReleaseFocus
         ? GestureDetector(
             onTap: () => _releaseFocus(context),
@@ -51,7 +49,7 @@ class CustomScaffold extends StatelessWidget {
               value: themeData ?? SystemUiOverlayTheme.mainOverlayStyle,
               child: Scaffold(
                 resizeToAvoidBottomInset: resizeToAvoidBottomInset,
-                backgroundColor: backroundColor ?? scaffoldBackgroundColor,
+                backgroundColor: backroundColor,
                 body: withSafeArea
                     ? SafeArea(
                         top: top,
@@ -81,7 +79,7 @@ class CustomScaffold extends StatelessWidget {
                       child: body,
                     )
                   : body,
-              backgroundColor: backroundColor ?? scaffoldBackgroundColor,
+              backgroundColor: backroundColor,
               floatingActionButton: floatingActionButton,
               bottomNavigationBar: bottomNavigationBar,
               appBar: appBar,

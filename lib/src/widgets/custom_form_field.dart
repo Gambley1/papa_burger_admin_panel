@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show TextInputFormatter;
 import 'package:google_fonts/google_fonts.dart' show GoogleFonts;
 import 'package:papa_burger_admin_panel/src/config/constants/padding.dart';
+import 'package:papa_burger_admin_panel/src/config/constants/radius.dart';
 import 'package:papa_burger_admin_panel/src/config/constants/values.dart';
 
 class CustomFormField extends StatelessWidget {
@@ -37,6 +38,9 @@ class CustomFormField extends StatelessWidget {
     this.fontSize,
     this.initialValue,
     this.decoration,
+    this.helperText,
+    this.textInputColor,
+    this.onFieldSubmitted,
   });
 
   factory CustomFormField.withoutBorder({
@@ -45,6 +49,7 @@ class CustomFormField extends StatelessWidget {
     String? labelText,
     String? errorText,
     String? initialValue,
+    String? helperText,
     TextEditingController? textController,
     VoidCallback? onTap,
     FocusNode? focusNode,
@@ -89,6 +94,7 @@ class CustomFormField extends StatelessWidget {
               fontSize: 18,
             ),
           ),
+          helperText: helperText,
           labelText: labelText,
           hintText: hintText,
           errorText: errorText,
@@ -122,7 +128,7 @@ class CustomFormField extends StatelessWidget {
         ),
       );
 
-  final String? hintText, labelText, errorText, initialValue;
+  final String? hintText, labelText, errorText, initialValue, helperText;
   final TextEditingController? textController;
   final VoidCallback? onTap;
   final FocusNode? focusNode;
@@ -136,9 +142,11 @@ class CustomFormField extends StatelessWidget {
   final TextInputType? textInputType;
   final List<TextInputFormatter>? inputFormatters;
   final String? Function(String?)? validator;
+  final void Function(String)? onFieldSubmitted;
   final FloatingLabelBehavior? floatingLabelBehaviour;
   final EdgeInsetsGeometry? contentPadding;
   final InputDecoration? decoration;
+  final Color? textInputColor;
 
   @override
   Widget build(BuildContext context) {
@@ -149,6 +157,11 @@ class CustomFormField extends StatelessWidget {
       keyboardType: textInputType,
       inputFormatters: inputFormatters,
       onTap: onTap,
+      onFieldSubmitted: onFieldSubmitted,
+      style: defaultTextStyle(
+        color: textInputColor ?? Colors.white,
+        size: 14,
+      ),
       onChanged: onChanged,
       autocorrect: autoCorrect ?? true,
       textInputAction: textInputAction,
@@ -166,6 +179,7 @@ class CustomFormField extends StatelessWidget {
               color: Colors.white,
               fontWeight: FontWeight.w400,
             ),
+            helperText: helperText,
             labelText: labelText,
             hintText: hintText,
             errorText: errorText,
@@ -173,6 +187,10 @@ class CustomFormField extends StatelessWidget {
             disabledBorder: disabledBorder,
             focusedBorder: focusedBorder,
             errorMaxLines: 2,
+            helperStyle: defaultTextStyle(
+              color: Colors.white.withOpacity(.6),
+              size: 14,
+            ),
             prefixIcon: prefixIcon,
             suffixIcon: suffixIcon,
             iconColor: Colors.grey,
@@ -188,7 +206,14 @@ class CustomFormField extends StatelessWidget {
               color: Colors.grey,
               fontWeight: FontWeight.w400,
             ),
-            border: border,
+            border: border ??
+                OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(defaultBorderRadius),
+                  borderSide: const BorderSide(
+                    width: 4,
+                    color: Colors.white,
+                  ),
+                ),
             errorStyle: const TextStyle(fontSize: 14),
             contentPadding: contentPadding ??
                 EdgeInsets.only(

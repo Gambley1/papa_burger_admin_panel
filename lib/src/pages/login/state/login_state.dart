@@ -14,17 +14,13 @@ enum SubmissionStatus {
 }
 
 class LoginState {
-  LoginState({
-    required this.submissionStatus,
-    required this.name,
-    required this.password,
+  const LoginState._({
+    this.submissionStatus = SubmissionStatus.idle,
+    this.name = const Username.unvalidated(),
+    this.password = const Password.unvalidated(),
   });
 
-  factory LoginState.initial() => LoginState(
-        submissionStatus: SubmissionStatus.idle,
-        name: const Username.unvalidated(),
-        password: const Password.unvalidated(),
-      );
+  const LoginState.initial() : this._();
 
   final SubmissionStatus submissionStatus;
   final Username name;
@@ -35,7 +31,7 @@ class LoginState {
     Username? name,
     Password? password,
   }) {
-    return LoginState(
+    return LoginState._(
       submissionStatus: submissionStatus ?? this.submissionStatus,
       name: name ?? this.name,
       password: password ?? this.password,

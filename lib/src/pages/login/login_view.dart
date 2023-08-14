@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:papa_burger_admin_panel/src/config/constants/padding.dart';
+import 'package:papa_burger_admin_panel/src/config/extensions/context_extension.dart';
+import 'package:papa_burger_admin_panel/src/config/extensions/theme_extension.dart';
 import 'package:papa_burger_admin_panel/src/pages/login/components/login_form.dart';
 import 'package:papa_burger_admin_panel/src/widgets/custom_scaffold.dart';
 
@@ -8,13 +10,14 @@ class LoginView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const CustomScaffold(
-      withSafeArea: true,
+    return CustomScaffold(
       withReleaseFocus: true,
-      body: SingleChildScrollView(
-        child: Column(
+      body: Container(
+        height: context.height,
+        width: context.width,
+        color: context.scaffolBackgroundColor,
+        child: const Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Padding(
               padding: EdgeInsets.symmetric(
